@@ -43,7 +43,14 @@ void FirstApp::Start()
     camera->SetOrthographic(true);
     graphics = GetSubsystem<Graphics>(); 
     // Set camera ortho size (the value of PIXEL_SIZE is 0.01)
-    camera->SetOrthoSize((float)graphics->GetHeight() * 0.01); 
+    camera->SetOrthoSize((float)graphics->GetHeight() * 0.01);
+
+    ResourceCache* cache = GetSubsystem<ResourceCache>();
+    // Get sprite
+    Sprite2D* sprite = cache->GetResource<Sprite2D>("Urho2D/Aster.png");
+
+    float halfWidth = graphics->GetWidth() * 0.5f * PIXEL_SIZE;
+    float halfHeight = graphics->GetHeight() * 0.5f * PIXEL_SIZE;
 
     // Called after engine initialization. Setup application & subscribe to events here
     SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(FirstApp, HandleKeyDown));
